@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "gen:journal": "node scripts/gen-journal.mjs",
+    "prebuild": "node scripts/gen-journal.mjs",
     "build": "next build",
     "dev": "next dev",
     "start": "next start",

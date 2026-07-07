@@ -1,0 +1,99 @@
+/* ————— landing page · section-specific styles ————— */
+
+/* the point (paper) */
+.point-head {
+  margin-top: 26px;
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.032em;
+  line-height: 1;
+  max-width: 16ch;
+}
+
+/* the work: prose first, then a tick list — never a menu */
+.crafts { margin-top: 56px; max-width: 640px; }
+.craft {
+  position: relative;
+  padding: 26px 0 26px 28px;
+  border-bottom: 1px solid var(--line-paper);
+}
+.craft:first-child { border-top: 1px solid var(--line-paper); }
+.craft::before {
+  content: "";
+  position: absolute; left: 0; top: 34px;
+  width: 1px; height: 15px;
+  background: var(--oxblood);
+  transform: scaleY(0); transform-origin: top;
+  transition: transform 0.7s var(--ease) var(--d, 0s);
+}
+.is-in .craft::before { transform: scaleY(1); }
+.craft h3 { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.015em; }
+.craft p { margin-top: 6px; font-size: 0.98rem; color: var(--taupe-dark); max-width: 52ch; }
+.crafts-note { margin-top: 24px; font-size: 0.95rem; color: var(--taupe-dark); max-width: 52ch; }
+@media (max-width: 600px) { .craft { padding: 22px 0 22px 22px; } }
+
+/* the hands + yours (ink chapter) */
+.hands-grid {
+  margin-top: 70px;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 60px;
+  align-items: start;
+}
+@media (max-width: 860px) { .hands-grid { grid-template-columns: 1fr; gap: 48px; margin-top: 54px; } }
+.bigword {
+  font-size: clamp(3.8rem, 12vw, 8.5rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 0.82;
+}
+.bigword small {
+  display: block;
+  font-size: 0.8rem; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--taupe-lt);
+  margin-top: 26px; line-height: 1.6;
+}
+.truths { display: grid; gap: 34px; }
+.truth { position: relative; padding-top: 18px; }
+.truth::before {
+  content: "";
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 2px;
+  background: var(--paper);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 1s var(--ease) var(--d, 0s);
+}
+.is-in .truth::before { transform: scaleX(1); }
+.truth h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.015em; }
+.truth p { margin-top: 8px; font-size: 0.98rem; color: var(--taupe-lt); max-width: 46ch; }
+
+/* the refusal (paper) */
+.refusal-quotes { margin-top: 46px; display: grid; gap: 34px; max-width: 620px; }
+.rq {
+  position: relative;
+  padding-left: 26px;
+  font-size: clamp(1.2rem, 2.8vw, 1.7rem);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+}
+.rq::before {
+  content: "";
+  position: absolute; left: 0; top: 4px; bottom: 4px;
+  width: 2px; background: var(--oxblood);
+  transform: scaleY(0); transform-origin: top;
+  transition: transform 0.9s var(--ease) var(--d, 0s);
+}
+.is-in .rq::before { transform: scaleY(1); }
+.refusal-plain { margin-top: 34px; max-width: 56ch; font-size: 1rem; color: var(--taupe-dark); }
+
+/* founding (paper deep) */
+.founding-head {
+  margin-top: 26px;
+  font-size: clamp(1.9rem, 5vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+  max-width: 20ch;
+}

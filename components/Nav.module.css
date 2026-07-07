@@ -4,7 +4,7 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 30;
+  z-index: 40;
   background: var(--ink);
   border-bottom: 1px solid var(--line-ink);
 }
@@ -30,6 +30,9 @@
   line-height: 1;
   text-decoration: none;
   color: var(--paper);
+}
+.wmMono {
+  display: none;
 }
 .links {
   display: flex;
@@ -74,11 +77,134 @@
   background: var(--oxblood);
   display: inline-block;
 }
-@media (max-width: 640px) {
-  .links {
-    gap: 20px;
+
+/* the trigger — a word, not an icon */
+.menuBtn {
+  display: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.74rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--paper);
+  padding: 6px 0 6px 16px;
+}
+
+/* ————— mobile overlay menu ————— */
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: 35;
+  background: var(--ink);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 20px 46px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s var(--ease), visibility 0s linear 0.4s;
+}
+.menuOpen {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.4s var(--ease);
+}
+.menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.menu li {
+  border-top: 1px solid var(--line-ink);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s var(--ease) calc(0.08s + var(--i) * 0.06s),
+    transform 0.5s var(--ease) calc(0.08s + var(--i) * 0.06s);
+}
+.menuOpen li {
+  opacity: 1;
+  transform: none;
+}
+.menu li a {
+  display: block;
+  padding: 20px 0;
+  font-size: clamp(1.9rem, 8.5vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--paper);
+  text-decoration: none;
+}
+.menu li a[aria-current="page"] {
+  color: var(--taupe-lt);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.menu li a[aria-current="page"]::before {
+  content: "";
+  width: 1px;
+  height: 0.7em;
+  background: var(--oxblood);
+  display: inline-block;
+}
+.menuCta {
+  display: block;
+  margin-top: 34px;
+  padding: 16px 0;
+  background: var(--oxblood);
+  color: var(--paper);
+  font-weight: 600;
+  font-size: 0.98rem;
+  text-align: center;
+  text-decoration: none;
+}
+.menuNote {
+  margin-top: 14px;
+  font-size: 0.8rem;
+  color: var(--taupe-lt);
+}
+.menuMeasure {
+  order: -1;
+  height: 24px;
+  margin: 0 0 40px;
+  border-bottom: 1px solid var(--line-ink-2);
+  background-image: repeating-linear-gradient(
+      90deg,
+      var(--line-ink-2) 0 1px,
+      transparent 1px 12px
+    ),
+    repeating-linear-gradient(90deg, var(--paper) 0 1px, transparent 1px 72px);
+  background-size: 100% 10px, 100% 24px;
+  background-repeat: repeat-x;
+  background-position: bottom;
+}
+
+/* ————— responsive switch ————— */
+@media (max-width: 760px) {
+  /* bar is always present on mobile — no scroll-in game on a small screen */
+  .bar,
+  .hide {
+    transform: none;
   }
-  .go {
+  .links {
+    display: none;
+  }
+  .menuBtn {
+    display: block;
+  }
+  .wmFull {
+    display: none;
+  }
+  .wmMono {
+    display: inline;
+  }
+}
+@media (min-width: 761px) {
+  .menu {
     display: none;
   }
 }

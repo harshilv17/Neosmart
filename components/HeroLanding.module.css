@@ -67,22 +67,46 @@
   color: var(--taupe-lt);
 }
 @media (max-width: 700px) {
+  /* the hero takes the height its content earns — nothing more */
   .hero {
     min-height: 0;
     display: block;
-    padding-bottom: 150px;
+    padding-bottom: 0;
   }
   .inner {
-    padding: 124px 0 30px;
+    padding: 122px 0 56px;
+    /* kill the parallax/fade transforms on touch */
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  .wordmark {
+    font-size: clamp(2.7rem, 16.5vw, 4.6rem);
   }
   .tagline {
-    margin-top: 22px;
+    margin-top: 20px;
+    font-size: 1.15rem;
   }
   .cat {
     margin-top: 14px;
   }
+  /* no scroll cue on a phone — scrolling needs no instructions */
   .cue {
-    bottom: 76px;
+    display: none;
+  }
+  /* the measure band closes the section in flow, not pinned to the viewport */
+  .measure {
+    position: static;
+    height: auto;
+    margin-top: 56px;
+  }
+  /* the "Studio" label row — the site bar replaces it on mobile */
+  .top {
+    display: none;
+  }
+}
+@media (max-width: 360px) {
+  .wordmark {
+    font-size: 2.35rem;
   }
 }
 

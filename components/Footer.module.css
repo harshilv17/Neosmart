@@ -95,3 +95,14 @@
     gap: 6px;
   }
 }
+
+/* tighter on a phone — brand line leads, then the two columns */
+@media (max-width: 700px) {
+  .top {
+    padding: 44px 0 36px;
+    gap: 32px;
+  }
+  .fwm {
+    font-size: 1.3rem;
+  }
+}

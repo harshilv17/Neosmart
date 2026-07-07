@@ -66,6 +66,8 @@ export default function HeroLanding() {
     if (reduced || !window.matchMedia("(pointer: fine)").matches) {
       // still apply the scroll fade even without pointer parallax
       const onScroll = () => {
+        // on a phone the CSS neutralizes the hero transform — don't compute it
+        if (window.innerWidth <= 700) return;
         const inner = innerRef.current;
         if (!inner) return;
         const h = Math.min(window.scrollY / window.innerHeight, 1);
@@ -84,6 +86,7 @@ export default function HeroLanding() {
       rafId: number | null = null;
 
     const apply = () => {
+      if (window.innerWidth <= 700) return;
       const inner = innerRef.current;
       if (!inner) return;
       const h = Math.min(window.scrollY / window.innerHeight, 1);

@@ -199,3 +199,82 @@ section { padding: 120px 0; }
   .hero-inner { transform: none !important; opacity: 1 !important; }
   .site-bar { transition: none; }
 }
+
+/* ————————————————————————————————————————————————
+   Mobile polish — everything below the hero.
+   Same content, same order; rhythm recut for one hand
+   and one column. (Hero, nav and footer corrections live
+   in their component modules.)
+———————————————————————————————————————————————— */
+@media (max-width: 700px) {
+  /* sections breathe less on a phone — the scroll is the white space */
+  section { padding: 68px 0; }
+
+  /* landing: headlines can run bigger in one column */
+  .point-head { font-size: clamp(2rem, 9.5vw, 2.7rem); margin-top: 22px; }
+  .section-head { font-size: clamp(1.8rem, 8.5vw, 2.4rem); margin-top: 22px; }
+  .body-copy { margin-top: 20px; font-size: 1rem; }
+
+  /* crafts list: tighter rows, ticks closer */
+  .crafts { margin-top: 40px; }
+  .craft { padding: 20px 0 20px 20px; }
+  .craft::before { top: 27px; }
+  .craft h3 { font-size: 1.15rem; }
+
+  /* the "Yours." chapter: let the word own the screen, then the truths */
+  .hands-grid { margin-top: 44px; gap: 44px; }
+  .bigword { font-size: clamp(4.2rem, 26vw, 6rem); }
+  .bigword small { margin-top: 20px; }
+  .truths { gap: 28px; }
+
+  /* refusal quotes: keep them large — they're the loudest thing the brand says */
+  .refusal-quotes { margin-top: 36px; gap: 26px; }
+  .rq { font-size: clamp(1.15rem, 5.6vw, 1.4rem); padding-left: 20px; }
+
+  /* founding + invitation */
+  .founding-head { font-size: clamp(1.7rem, 8vw, 2.3rem); }
+  .invite-head { font-size: clamp(2.1rem, 10.5vw, 3rem); }
+
+  /* the CTA goes full-width — the one button earns the whole thumb zone */
+  .cta {
+    display: block;
+    text-align: center;
+    margin-top: 36px;
+    padding: 17px 20px;
+  }
+
+  /* ————— inner pages ————— */
+  /* mastheads sit closer to the bar; the bar is always present on mobile */
+  .masthead { padding: 128px 0 64px; }
+  .mast-head { font-size: clamp(1.9rem, 9vw, 2.6rem); }
+  .mast-sub { margin-top: 20px; font-size: 1rem; }
+
+  /* studio: engagement arc stages */
+  .stage { padding: 24px 0; gap: 10px; }
+  .stage h3 { font-size: 1.15rem; }
+
+  /* studio: behaviour checks */
+  .checks { margin-top: 40px; }
+  .check { padding: 20px 0 20px 22px; }
+
+  /* work: engagement narratives */
+  .eng-client { font-size: clamp(1.9rem, 9.5vw, 2.6rem); }
+  .eng-line { font-size: 1.1rem; margin-top: 14px; }
+  .owns { margin-top: 40px; }
+  .own-item { padding: 16px 0 16px 22px; }
+  .media-row { margin-top: 40px; gap: 12px; }
+  .media-row figcaption { margin-top: 8px; }
+
+  /* journal index: entries */
+  .entries { padding: 60px 0 84px; }
+  .entry { padding: 32px 0; }
+  .entry h2 { font-size: clamp(1.3rem, 6.5vw, 1.7rem); }
+
+  /* essay pages: reading comfort on a phone (pull quote = blockquote here) */
+  .essay-head { padding: 122px 0 40px; }
+  .essay-head h1 { font-size: clamp(1.7rem, 8.5vw, 2.3rem); }
+  .essay { padding: 40px 0 28px; }
+  .essay p { font-size: 1.0625rem; line-height: 1.7; }
+  .essay blockquote { margin: 32px 0; font-size: 1.15rem; padding-left: 18px; }
+  .essay-end { padding: 16px 0 76px; }
+}

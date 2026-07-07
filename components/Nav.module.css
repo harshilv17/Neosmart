@@ -1,0 +1,84 @@
+/* ————— navbar · quiet, one line (from navbar.md) ————— */
+.bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  background: var(--ink);
+  border-bottom: 1px solid var(--line-ink);
+}
+/* home variant: hidden until the giant wordmark masthead is scrolled past */
+.hide {
+  transform: translateY(-101%);
+  transition: transform 0.5s var(--ease);
+}
+.hide.visible {
+  transform: translateY(0);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+}
+.wm {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  font-size: 1.15rem;
+  line-height: 1;
+  text-decoration: none;
+  color: var(--paper);
+}
+.links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.link {
+  font-size: 0.74rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--taupe-lt);
+  text-decoration: none;
+  transition: color 0.3s var(--ease);
+}
+.link:hover,
+.link:focus-visible {
+  color: var(--paper);
+}
+.current {
+  color: var(--paper);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.current::before {
+  content: "";
+  width: 1px;
+  height: 12px;
+  background: var(--oxblood);
+  display: inline-block;
+}
+.go {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.go::after {
+  content: "";
+  width: 1px;
+  height: 12px;
+  background: var(--oxblood);
+  display: inline-block;
+}
+@media (max-width: 640px) {
+  .links {
+    gap: 20px;
+  }
+  .go {
+    display: none;
+  }
+}

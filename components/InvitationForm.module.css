@@ -1,0 +1,77 @@
+/* ————— the invitation form · quiet fields on ink ————— */
+.form {
+  margin-top: 40px;
+  max-width: 560px;
+}
+.field {
+  position: relative;
+  margin-bottom: 28px;
+}
+.field label {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--taupe-lt);
+  margin-bottom: 10px;
+}
+.field input,
+.field textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--line-ink-2);
+  color: var(--paper);
+  font-family: inherit;
+  font-size: 1.0625rem;
+  padding: 10px 0;
+  transition: border-color 0.3s var(--ease);
+}
+.field textarea {
+  resize: vertical;
+  min-height: 96px;
+  line-height: 1.6;
+}
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-bottom-color: var(--paper);
+}
+.field input::placeholder,
+.field textarea::placeholder {
+  color: var(--taupe);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.actions .cta {
+  margin-top: 0;
+}
+
+.status {
+  margin-top: 22px;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  max-width: 52ch;
+}
+.ok {
+  color: var(--paper);
+}
+.err {
+  color: var(--taupe-lt);
+}
+.err a {
+  color: var(--paper);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.note {
+  margin-top: 20px;
+  font-size: 0.85rem;
+  color: var(--taupe-lt);
+}

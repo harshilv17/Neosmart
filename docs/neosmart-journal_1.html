@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Journal — Neosmart</title>
+<meta name="description" content="Occasional, considered writing from Neosmart — how the studio thinks, published in the open." />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Journal — Neosmart" />
+<meta property="og:description" content="Occasional, considered writing — how the studio thinks, published in the open." />
+<meta property="og:site_name" content="Neosmart" />
+<meta name="theme-color" content="#1A1613" />
+
+<!-- Favicon: the N. monogram, inline -->
+<link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="%231A1613"/><text x="30" y="46" font-family="Helvetica,Arial,sans-serif" font-size="38" font-weight="800" text-anchor="middle" fill="%23ECE4D4">N</text><circle cx="47" cy="44" r="3.4" fill="%237A2E2B"/></svg>' />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+/* ————————————————————————————————————————————————
+   Neosmart — journal index · v1
+   A reading list, not a blog. No categories, no tags,
+   no share strips. Entries arrive when they're ready.
+———————————————————————————————————————————————— */
+:root {
+  --ink: #1A1613;
+  --ink-soft: #262019;
+  --paper: #ECE4D4;
+  --paper-2: #E3D9C4;
+  --oxblood: #7A2E2B;
+  --taupe: #7E7362;
+  --taupe-dark: #5C5244;
+  --taupe-lt: #B7AC98;
+  --line-ink: rgba(236, 228, 212, 0.14);
+  --line-ink-2: rgba(236, 228, 212, 0.34);
+  --line-paper: rgba(26, 22, 19, 0.16);
+  --line-paper-2: rgba(26, 22, 19, 0.32);
+  --font: "Hanken Grotesk", "Inter", system-ui, -apple-system, sans-serif;
+  --wrap: 1140px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--ink);
+  color: var(--paper);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+::selection { background: var(--oxblood); color: var(--paper); }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--oxblood); outline-offset: 3px; }
+.ink-ground :focus-visible, .site-bar :focus-visible { outline-color: var(--paper); }
+
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 40px; }
+@media (max-width: 900px) { .wrap { padding: 0 30px; } }
+@media (max-width: 600px) { .wrap { padding: 0 20px; } }
+
+.dot { color: var(--oxblood); }
+
+.eyebrow {
+  font-size: 0.7rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.18em;
+  display: inline-flex; align-items: center; gap: 12px;
+}
+.eyebrow .tick {
+  width: 1px; height: 13px; background: var(--oxblood);
+  display: inline-block; flex: none;
+  transform: scaleY(0); transform-origin: bottom;
+  transition: transform 0.7s var(--ease) 0.1s;
+}
+.is-in .eyebrow .tick { transform: scaleY(1); }
+.ink-ground .eyebrow { color: var(--taupe-lt); }
+.paper-ground .eyebrow { color: var(--taupe-dark); }
+
+.mask { display: block; overflow: hidden; }
+.mask > span {
+  display: block;
+  transform: translateY(112%);
+  transition: transform 1.05s var(--ease) var(--d, 0s);
+}
+.is-in .mask > span { transform: translateY(0); }
+.fade {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.9s var(--ease) var(--d, 0s), transform 0.9s var(--ease) var(--d, 0s);
+}
+.is-in .fade, .fade.is-in { opacity: 1; transform: none; }
+
+.ink-ground { background: var(--ink); color: var(--paper); }
+.paper-ground { background: var(--paper); color: var(--ink); }
+
+.rule {
+  height: 24px;
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 1.3s var(--ease) 0.1s;
+  background-repeat: repeat-x;
+  background-size: 100% 10px, 100% 24px;
+  background-position: bottom;
+}
+.rule.is-in { transform: scaleX(1); }
+.rule.on-ink {
+  border-bottom: 1px solid var(--line-ink-2);
+  background-image:
+    repeating-linear-gradient(90deg, var(--line-ink-2) 0 1px, transparent 1px 12px),
+    repeating-linear-gradient(90deg, var(--paper) 0 1px, transparent 1px 72px);
+}
+
+/* site bar */
+.site-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 30;
+  background: var(--ink);
+  border-bottom: 1px solid var(--line-ink);
+}
+.site-bar .row { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; }
+.site-bar .wm { font-weight: 800; letter-spacing: -0.03em; font-size: 1.15rem; line-height: 1; text-decoration: none; color: var(--paper); }
+.site-bar .right { display: flex; align-items: center; gap: 28px; }
+.site-bar .here {
+  font-size: 0.74rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em;
+  color: var(--paper); display: inline-flex; align-items: center; gap: 10px;
+}
+.site-bar .here::before { content: ""; width: 1px; height: 12px; background: var(--oxblood); display: inline-block; }
+.site-bar .go {
+  font-size: 0.74rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em;
+  color: var(--taupe-lt); text-decoration: none; transition: color 0.3s var(--ease);
+}
+.site-bar .go:hover, .site-bar .go:focus-visible { color: var(--paper); }
+@media (max-width: 560px) { .site-bar .go.hide-s { display: none; } }
+
+/* masthead */
+.masthead { padding: 190px 0 110px; }
+@media (max-width: 600px) { .masthead { padding: 150px 0 80px; } }
+.mast-head {
+  margin-top: 26px;
+  font-size: clamp(2.2rem, 6.5vw, 4.6rem);
+  font-weight: 800;
+  letter-spacing: -0.033em;
+  line-height: 1.0;
+  max-width: 15ch;
+}
+.mast-sub { margin-top: 28px; max-width: 52ch; font-size: 1.0625rem; color: var(--taupe-lt); }
+
+/* the reading list */
+.entries { padding: 96px 0 130px; }
+@media (max-width: 600px) { .entries { padding: 72px 0 96px; } }
+.entry {
+  display: block;
+  text-decoration: none;
+  padding: 44px 0;
+  border-bottom: 1px solid var(--line-paper);
+  max-width: 780px;
+}
+.entry:first-child { border-top: 1px solid var(--line-paper); }
+.entry .when {
+  font-size: 0.7rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.16em;
+  color: var(--taupe-dark);
+  display: inline-flex; align-items: center; gap: 10px;
+}
+.entry .when::before { content: ""; width: 1px; height: 12px; background: var(--oxblood); display: inline-block; }
+.entry h2 {
+  margin-top: 14px;
+  font-size: clamp(1.5rem, 3.6vw, 2.3rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  max-width: 24ch;
+  transition: color 0.3s var(--ease);
+}
+.entry:hover h2, .entry:focus-visible h2 { color: var(--oxblood); }
+.entry p { margin-top: 12px; font-size: 1rem; color: var(--taupe-dark); max-width: 56ch; }
+.entry .read {
+  display: inline-flex; align-items: center; gap: 12px;
+  margin-top: 20px;
+  font-size: 0.74rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.16em;
+  color: var(--ink);
+}
+.entry .read::after {
+  content: ""; width: 26px; height: 1px; background: var(--oxblood);
+  transition: width 0.35s var(--ease);
+}
+.entry:hover .read::after, .entry:focus-visible .read::after { width: 44px; }
+
+.entries-note { margin-top: 40px; font-size: 0.95rem; color: var(--taupe-dark); max-width: 52ch; }
+
+/* footer */
+footer { background: var(--ink); color: var(--taupe-lt); padding: 44px 0; border-top: 1px solid var(--line-ink); }
+footer .fr { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 14px 24px; font-size: 0.78rem; letter-spacing: 0.04em; }
+footer .fwm { font-weight: 800; letter-spacing: -0.03em; font-size: 1.05rem; color: var(--paper); }
+@media (max-width: 480px) { footer .fr { flex-direction: column; } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .mask > span, .fade, .eyebrow .tick, .rule {
+    transition: none !important; transform: none !important; opacity: 1 !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<nav class="site-bar" aria-label="Main">
+  <div class="wrap row">
+    <a class="wm" href="index.html">Neosmart<span class="dot">.</span></a>
+    <div class="right">
+      <span class="here" aria-current="page">Journal</span>
+      <a class="go hide-s" href="index.html#conversation">Start a conversation</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<header class="ink-ground masthead reveal">
+  <div class="wrap">
+    <span class="eyebrow"><span class="tick"></span>Journal</span>
+    <h1 class="mast-head">
+      <span class="mask"><span style="--d:0.1s">How we think,</span></span>
+      <span class="mask"><span style="--d:0.22s">in the open.</span></span>
+    </h1>
+    <p class="mast-sub fade" style="--d:0.5s">
+      Occasional, considered writing — published when it's ready, never on
+      a schedule, and never behind a form. If it's worth your time, it's
+      free to read.
+    </p>
+  </div>
+</header>
+
+<div class="ink-ground" aria-hidden="true"><div class="wrap"><div class="rule on-ink reveal-self"></div></div></div>
+
+<section class="paper-ground entries reveal">
+  <div class="wrap">
+    <a class="entry" href="journal-done-means-it-runs.html">
+      <span class="when">July 2026</span>
+      <h2>“Done” means it runs in your hands</h2>
+      <p>Most projects end when a file is delivered. Ours end when you no longer need us — a note on what handover actually means, and why we build for the day after we leave.</p>
+      <span class="read">Read the essay</span>
+    </a>
+
+    <a class="entry" href="journal-the-maker-answers.html">
+      <span class="when">July 2026</span>
+      <h2>The maker answers the email</h2>
+      <p>Most firms install a layer between you and the person building your work. On what that layer actually costs — and why it doesn't exist here.</p>
+      <span class="read">Read the essay</span>
+    </a>
+
+    <a class="entry" href="journal-the-outcome-not-the-technology.html">
+      <span class="when">July 2026</span>
+      <h2>The outcome, not the technology</h2>
+      <p>Why we write “a system that clears your inbox triage” and never “an AI-powered solution.” A rule about honesty, not style — a technology can be impressive; only an outcome can be checked.</p>
+      <span class="read">Read the essay</span>
+    </a>
+
+    <a class="entry" href="journal-design-is-not-decoration.html">
+      <span class="when">July 2026</span>
+      <h2>What “design as decoration” actually means</h2>
+      <p>One of the two sentences we publish about work we turn down, explained. Not a designer's vanity — a refusal that protects the client from the expensive kind of rework.</p>
+      <span class="read">Read the essay</span>
+    </a>
+
+    <p class="entries-note fade" style="--d:0.3s">
+      This page grows slowly, on purpose. Writing joins it the same way work
+      joins the studio — when it's finished.
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap fr">
+    <span class="fwm">Neosmart<span class="dot">.</span></span>
+    <span>Made for one.</span>
+    <span>© 2026 Neosmart Labs</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.16 });
+  document.querySelectorAll(".reveal, .reveal-self").forEach(function (el) { io.observe(el); });
+})();
+</script>
+
+</body>
+</html>

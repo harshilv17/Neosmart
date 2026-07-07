@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Work — Neosmart</title>
+<meta name="description" content="Engagements told honestly — what each client now owns and runs. Shades of You, Tilak Sales, and the studio's founding note." />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Work — Neosmart" />
+<meta property="og:description" content="Engagements told honestly — what each client now owns and runs." />
+<meta property="og:site_name" content="Neosmart" />
+<meta name="theme-color" content="#1A1613" />
+
+<!-- Favicon: the N. monogram, inline -->
+<link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="%231A1613"/><text x="30" y="46" font-family="Helvetica,Arial,sans-serif" font-size="38" font-weight="800" text-anchor="middle" fill="%23ECE4D4">N</text><circle cx="47" cy="44" r="3.4" fill="%237A2E2B"/></svg>' />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+/* ————————————————————————————————————————————————
+   Neosmart — work page · v1
+   Engagements as narratives, not cards.
+   Each is framed around what the client now owns.
+———————————————————————————————————————————————— */
+:root {
+  --ink: #1A1613;
+  --ink-soft: #262019;
+  --paper: #ECE4D4;
+  --paper-2: #E3D9C4;
+  --oxblood: #7A2E2B;
+  --taupe: #7E7362;
+  --taupe-dark: #5C5244;
+  --taupe-lt: #B7AC98;
+  --line-ink: rgba(236, 228, 212, 0.14);
+  --line-ink-2: rgba(236, 228, 212, 0.34);
+  --line-paper: rgba(26, 22, 19, 0.16);
+  --line-paper-2: rgba(26, 22, 19, 0.32);
+  --font: "Hanken Grotesk", "Inter", system-ui, -apple-system, sans-serif;
+  --wrap: 1140px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--ink);
+  color: var(--paper);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+::selection { background: var(--oxblood); color: var(--paper); }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--oxblood); outline-offset: 3px; }
+.ink-ground :focus-visible, .site-bar :focus-visible { outline-color: var(--paper); }
+
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 40px; }
+@media (max-width: 900px) { .wrap { padding: 0 30px; } }
+@media (max-width: 600px) { .wrap { padding: 0 20px; } }
+
+.dot { color: var(--oxblood); }
+
+/* ————— shared type ————— */
+.eyebrow {
+  font-size: 0.7rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.18em;
+  display: inline-flex; align-items: center; gap: 12px;
+}
+.eyebrow .tick {
+  width: 1px; height: 13px; background: var(--oxblood);
+  display: inline-block; flex: none;
+  transform: scaleY(0); transform-origin: bottom;
+  transition: transform 0.7s var(--ease) 0.1s;
+}
+.is-in .eyebrow .tick { transform: scaleY(1); }
+.ink-ground .eyebrow { color: var(--taupe-lt); }
+.paper-ground .eyebrow { color: var(--taupe-dark); }
+
+.section-head {
+  margin-top: 26px;
+  font-size: clamp(1.9rem, 5vw, 3.4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+  max-width: 18ch;
+}
+.body-copy {
+  margin-top: 26px;
+  max-width: 58ch;
+  font-size: 1.0625rem;
+}
+.body-copy + .body-copy { margin-top: 15px; }
+.body-copy em { font-style: normal; font-weight: 600; }
+.ink-ground .muted { color: var(--taupe-lt); }
+.paper-ground .muted { color: var(--taupe-dark); }
+
+/* ————— grounds ————— */
+.ink-ground { background: var(--ink); color: var(--paper); }
+.paper-ground { background: var(--paper); color: var(--ink); }
+.paper-ground.deep { background: var(--paper-2); }
+
+section { padding: 120px 0; }
+@media (max-width: 900px) { section { padding: 96px 0; } }
+@media (max-width: 600px) { section { padding: 76px 0; } }
+
+/* ————— the measure: section rules ————— */
+.rule {
+  height: 24px;
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 1.3s var(--ease) 0.1s;
+  background-repeat: repeat-x;
+  background-size: 100% 10px, 100% 24px;
+  background-position: bottom;
+}
+.rule.is-in { transform: scaleX(1); }
+.rule.on-ink {
+  border-bottom: 1px solid var(--line-ink-2);
+  background-image:
+    repeating-linear-gradient(90deg, var(--line-ink-2) 0 1px, transparent 1px 12px),
+    repeating-linear-gradient(90deg, var(--paper) 0 1px, transparent 1px 72px);
+}
+.rule.on-paper {
+  border-bottom: 1px solid var(--ink);
+  background-image:
+    repeating-linear-gradient(90deg, var(--line-paper-2) 0 1px, transparent 1px 12px),
+    repeating-linear-gradient(90deg, var(--ink) 0 1px, transparent 1px 72px);
+}
+
+/* ————— reveal primitives ————— */
+.mask { display: block; overflow: hidden; }
+.mask > span {
+  display: block;
+  transform: translateY(112%);
+  transition: transform 1.05s var(--ease) var(--d, 0s);
+}
+.is-in .mask > span { transform: translateY(0); }
+.fade {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.9s var(--ease) var(--d, 0s), transform 0.9s var(--ease) var(--d, 0s);
+}
+.is-in .fade, .fade.is-in { opacity: 1; transform: none; }
+
+/* ————— site bar ————— */
+.site-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 30;
+  background: var(--ink);
+  border-bottom: 1px solid var(--line-ink);
+}
+.site-bar .row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 0;
+}
+.site-bar .wm {
+  font-weight: 800; letter-spacing: -0.03em;
+  font-size: 1.15rem; line-height: 1;
+  text-decoration: none; color: var(--paper);
+}
+.site-bar .right { display: flex; align-items: center; gap: 28px; }
+.site-bar .here {
+  font-size: 0.74rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.16em;
+  color: var(--paper);
+  display: inline-flex; align-items: center; gap: 10px;
+}
+.site-bar .here::before {
+  content: "";
+  width: 1px; height: 12px; background: var(--oxblood);
+  display: inline-block;
+}
+.site-bar .go {
+  font-size: 0.74rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.16em;
+  color: var(--taupe-lt);
+  text-decoration: none;
+  transition: color 0.3s var(--ease);
+}
+.site-bar .go:hover, .site-bar .go:focus-visible { color: var(--paper); }
+@media (max-width: 560px) { .site-bar .go.hide-s { display: none; } }
+
+/* ————— page masthead ————— */
+.masthead { padding: 190px 0 120px; }
+@media (max-width: 600px) { .masthead { padding: 150px 0 84px; } }
+.mast-head {
+  margin-top: 26px;
+  font-size: clamp(2.2rem, 6.5vw, 4.6rem);
+  font-weight: 800;
+  letter-spacing: -0.033em;
+  line-height: 1.0;
+  max-width: 15ch;
+}
+.mast-sub {
+  margin-top: 28px;
+  max-width: 52ch;
+  font-size: 1.0625rem;
+  color: var(--taupe-lt);
+}
+
+/* ————— engagement narrative ————— */
+.eng-client {
+  margin-top: 26px;
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.032em;
+  line-height: 1.0;
+  max-width: 16ch;
+}
+.eng-line {
+  margin-top: 18px;
+  font-size: clamp(1.1rem, 2.4vw, 1.45rem);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  max-width: 34ch;
+  line-height: 1.35;
+}
+.paper-ground .eng-line { color: var(--ink); }
+
+/* what they now own — the tick list doing its job */
+.owns { margin-top: 54px; max-width: 640px; }
+.owns .owns-label {
+  font-size: 0.7rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.18em;
+  color: var(--taupe-dark);
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line-paper-2);
+  display: block;
+}
+.ink-ground .owns .owns-label { color: var(--taupe-lt); border-bottom-color: var(--line-ink-2); }
+.own-item {
+  position: relative;
+  padding: 20px 0 20px 26px;
+  border-bottom: 1px solid var(--line-paper);
+}
+.ink-ground .own-item { border-bottom-color: var(--line-ink); }
+.own-item::before {
+  content: "";
+  position: absolute; left: 0; top: 27px;
+  width: 1px; height: 14px;
+  background: var(--oxblood);
+  transform: scaleY(0); transform-origin: top;
+  transition: transform 0.7s var(--ease) var(--d, 0s);
+}
+.is-in .own-item::before { transform: scaleY(1); }
+.own-item h3 { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.015em; }
+.own-item p { margin-top: 5px; font-size: 0.95rem; color: var(--taupe-dark); max-width: 52ch; }
+.ink-ground .own-item p { color: var(--taupe-lt); }
+
+/* proof link — quiet, one per engagement */
+.proof {
+  display: inline-flex; align-items: center; gap: 12px;
+  margin-top: 38px;
+  font-size: 0.78rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.16em;
+  text-decoration: none;
+  color: var(--ink);
+  transition: color 0.3s var(--ease);
+}
+.proof::after {
+  content: "";
+  width: 26px; height: 1px; background: var(--oxblood);
+  transition: width 0.35s var(--ease);
+}
+.proof:hover::after, .proof:focus-visible::after { width: 44px; }
+.ink-ground .proof { color: var(--paper); }
+
+/* ————— work media: frames for real work only ————— */
+.media-row {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+@media (max-width: 760px) { .media-row { grid-template-columns: 1fr; } }
+.media-row figure { margin: 0; }
+.media-row .frame {
+  border: 1px solid var(--line-paper-2);
+  background: var(--paper-2);
+  overflow: hidden;
+}
+.ink-ground .media-row .frame { border-color: var(--line-ink-2); background: var(--ink-soft); }
+.media-row img {
+  display: block;
+  width: 100%; height: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+.media-row figure.wide { grid-column: span 2; }
+.media-row figure.wide img { aspect-ratio: 8 / 5; }
+@media (max-width: 760px) { .media-row figure.wide { grid-column: auto; } .media-row figure.wide img { aspect-ratio: 4/3; } }
+.media-row figcaption {
+  margin-top: 10px;
+  font-size: 0.7rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--taupe-dark);
+  display: inline-flex; align-items: center; gap: 10px;
+}
+.media-row figcaption::before {
+  content: ""; width: 1px; height: 11px; background: var(--oxblood);
+  display: inline-block; flex: none;
+}
+.ink-ground .media-row figcaption { color: var(--taupe-lt); }
+
+/* ————— founding note, now joined by real work ————— */
+.founding-head {
+  margin-top: 26px;
+  font-size: clamp(1.9rem, 5vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+  max-width: 20ch;
+}
+
+/* ————— the invitation ————— */
+.invite-head {
+  margin-top: 26px;
+  font-size: clamp(2.2rem, 7vw, 5rem);
+  font-weight: 800;
+  letter-spacing: -0.033em;
+  line-height: 0.98;
+  max-width: 14ch;
+}
+.cta {
+  position: relative;
+  display: inline-block;
+  margin-top: 44px;
+  padding: 16px 34px;
+  background: var(--oxblood);
+  color: var(--paper);
+  font-weight: 600;
+  font-size: 0.98rem;
+  text-decoration: none;
+  overflow: hidden;
+  transition: color 0.35s var(--ease);
+}
+.cta::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: var(--paper);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.45s var(--ease);
+}
+.cta:hover::before, .cta:focus-visible::before { transform: scaleX(1); }
+.cta:hover, .cta:focus-visible { color: var(--ink); }
+.cta span { position: relative; z-index: 1; }
+.invite-note { margin-top: 20px; font-size: 0.85rem; color: var(--taupe-lt); }
+
+/* ————— footer ————— */
+footer {
+  background: var(--ink);
+  color: var(--taupe-lt);
+  padding: 44px 0;
+  border-top: 1px solid var(--line-ink);
+}
+footer .fr {
+  display: flex; justify-content: space-between; align-items: baseline;
+  flex-wrap: wrap; gap: 14px 24px;
+  font-size: 0.78rem; letter-spacing: 0.04em;
+}
+footer .fwm { font-weight: 800; letter-spacing: -0.03em; font-size: 1.05rem; color: var(--paper); }
+@media (max-width: 480px) { footer .fr { flex-direction: column; } }
+
+/* ————— reduced motion ————— */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .mask > span, .fade, .eyebrow .tick, .rule, .own-item::before {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- nav -->
+<nav class="site-bar" aria-label="Main">
+  <div class="wrap row">
+    <a class="wm" href="index.html">Neosmart<span class="dot">.</span></a>
+    <div class="right">
+      <span class="here" aria-current="page">Work</span>
+      <a class="go hide-s" href="#conversation">Start a conversation</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- ════════ MASTHEAD ════════ -->
+<header class="ink-ground masthead reveal">
+  <div class="wrap">
+    <span class="eyebrow"><span class="tick"></span>Work</span>
+    <h1 class="mast-head">
+      <span class="mask"><span style="--d:0.1s">What clients</span></span>
+      <span class="mask"><span style="--d:0.22s">now own and run.</span></span>
+    </h1>
+    <p class="mast-sub fade" style="--d:0.5s">
+      No case-study cards, no borrowed metrics. Each engagement below is told
+      the way it happened — and framed around the only measure that matters
+      here: what's now in the client's hands.
+    </p>
+  </div>
+</header>
+
+<div class="ink-ground" aria-hidden="true"><div class="wrap"><div class="rule on-ink reveal-self"></div></div></div>
+
+<!-- ════════ ENGAGEMENT · SHADES OF YOU ════════ -->
+<section class="paper-ground reveal">
+  <div class="wrap">
+    <span class="eyebrow"><span class="tick"></span>Engagement · homegrown batik womenswear</span>
+    <h2 class="eng-client">
+      <span class="mask"><span style="--d:0.1s">Shades of You</span></span>
+    </h2>
+    <p class="eng-line fade" style="--d:0.3s">
+      A batik house that now runs its whole digital life itself.
+    </p>
+    <p class="body-copy fade" style="--d:0.45s">
+      Shades of You makes handcrafted batik clothing for women — suit sets,
+      kurta sets, and co-ords, cut in sizes XS to 6XL and adjusted to the
+      wearer on request. Work with a maker's hand in it, which deserved a
+      digital presence built the same way. They didn't need a website, or a
+      brand, or a way to manage customers. They needed all of it, working
+      as one thing.
+    </p>
+    <p class="body-copy fade" style="--d:0.55s">
+      So it was designed and built as one: the brand the clothing ships
+      under, the store where it sells — now live and shipping worldwide —
+      and the customer system their team works in every day. The same hands
+      across all of it, from first sketch to a store taking orders.
+    </p>
+
+    <div class="media-row">
+      <figure class="wide">
+        <div class="frame"><img src="images/shades-of-you-01.jpg" alt="The Shades of You online store, live" loading="lazy" onerror="this.closest('figure').style.display='none'" /></div>
+        <figcaption>The store, live</figcaption>
+      </figure>
+      <figure>
+        <div class="frame"><img src="images/shades-of-you-02.jpg" alt="Shades of You brand identity in use" loading="lazy" onerror="this.closest('figure').style.display='none'" /></div>
+        <figcaption>The brand, in use</figcaption>
+      </figure>
+      <figure>
+        <div class="frame"><img src="images/shades-of-you-03.jpg" alt="The customer system Shades of You's team runs" loading="lazy" onerror="this.closest('figure').style.display='none'" /></div>
+        <figcaption>The system they run</figcaption>
+      </figure>
+      <figure class="wide">
+        <div class="frame"><img src="images/shades-of-you-04.jpg" alt="Shades of You batik clothing" loading="lazy" onerror="this.closest('figure').style.display='none'" /></div>
+        <figcaption>The work itself</figcaption>
+      </figure>
+    </div>
+
+    <div class="owns">
+      <span class="owns-label">Now in their hands</span>
+      <div class="own-item" style="--d:0.1s">
+        <h3>The brand</h3>
+        <p>The identity their batik ships under — theirs to grow, on every label, page, and post.</p>
+      </div>
+      <div class="own-item" style="--d:0.22s">
+        <h3>The store</h3>
+        <p>Their website and shop, live and selling — on their own domain, in their own accounts, shipping worldwide.</p>
+      </div>
+      <div class="own-item" style="--d:0.34s">
+        <h3>The customer system</h3>
+        <p>A CRM their own team runs every day — every enquiry, order, and customer relationship in one place they control.</p>
+      </div>
+    </div>
+
+    <a class="proof" href="https://www.shadesofyou.co.in/" target="_blank" rel="noopener">Visit Shades of You</a>
+  </div>
+</section>
+
+<div class="paper-ground" aria-hidden="true"><div class="wrap"><div class="rule on-paper reveal-self"></div></div></div>
+
+<!-- ════════ ENGAGEMENT · TILAK SALES ════════ -->
+<section class="paper-ground reveal">
+  <div class="wrap">
+    <span class="eyebrow"><span class="tick"></span>Engagement · real estate</span>
+    <h2 class="eng-client">
+      <span class="mask"><span style="--d:0.1s">Tilak Sales</span></span>
+    </h2>
+    <p class="eng-line fade" style="--d:0.3s">
+      A real-estate business, given a brand it can build on.
+    </p>
+    <p class="body-copy fade" style="--d:0.45s">
+      Real estate runs on trust, and trust starts with how a name carries
+      itself. Tilak Sales came for a brand — an identity considered enough
+      to hold its own on a hoarding, a handshake, and a listing alike.
+    </p>
+
+    <div class="owns">
+      <span class="owns-label">Now in their hands</span>
+      <div class="own-item" style="--d:0.1s">
+        <h3>The identity</h3>
+        <p>A brand built around their business — theirs to put on every property, document, and deal.</p>
+      </div>
+      <div class="own-item" style="--d:0.22s">
+        <h3>The website</h3>
+        <p>Their site, carrying the brand — where a listing, a name, and a number are all a buyer needs to find.</p>
+      </div>
+    </div>
+
+    <div class="media-row">
+      <figure class="wide">
+        <div class="frame"><img src="images/tilak-sales-01.jpg" alt="The Tilak Sales brand identity" loading="lazy" onerror="this.closest('figure').style.display='none'" /></div>
+        <figcaption>The identity</figcaption>
+      </figure>
+      <figure>
+        <div class="frame"><img src="images/tilak-sales-02.jpg" alt="The Tilak Sales website" loading="lazy" onerror="this.closest('figure').style.display='none'" /></div>
+        <figcaption>The website</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ THE FOUNDING NOTE — now joined by the work above ════════ -->
+<section class="paper-ground deep reveal">
+  <div class="wrap">
+    <span class="eyebrow"><span class="tick"></span>The honest version</span>
+    <h2 class="founding-head">
+      <span class="mask"><span style="--d:0.1s">The studio is young.</span></span>
+      <span class="mask"><span style="--d:0.22s">The work above is the proof.</span></span>
+    </h2>
+    <p class="body-copy fade" style="--d:0.38s">
+      Neosmart is new, and this page will grow slowly — engagements are added
+      only when they can be told honestly, as what the client now owns.
+      Work with us now and you get the studio at its most focused: the same
+      hands from first sketch to finished build, undivided attention, and a
+      real say in how we work.
+    </p>
+    <p class="body-copy fade" style="--d:0.48s">
+      Whatever we build together joins this page one day — and, like
+      everything we make, <em>it's yours to keep.</em>
+    </p>
+  </div>
+</section>
+
+<!-- ════════ THE SINGLE INVITATION ════════ -->
+<section class="ink-ground reveal" id="conversation">
+  <div class="wrap">
+    <span class="eyebrow"><span class="tick"></span>The invitation</span>
+    <h2 class="invite-head">
+      <span class="mask"><span style="--d:0.1s">Tell us how</span></span>
+      <span class="mask"><span style="--d:0.22s">you work.</span></span>
+    </h2>
+    <p class="body-copy muted fade" style="--d:0.4s">
+      A scoping call is a diagnosis, not a pitch. If we're not the right fit,
+      we'll say so on the call — and point you somewhere better where we can.
+    </p>
+    <a class="cta fade" style="--d:0.55s" href="mailto:hello@neosmartlabs.com"><span>Start a conversation</span></a>
+    <p class="invite-note fade" style="--d:0.7s">Replies come from a person, with a name.</p>
+  </div>
+  <div class="wrap" style="margin-top:100px"><div class="rule on-ink reveal-self" aria-hidden="true"></div></div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap fr">
+    <span class="fwm">Neosmart<span class="dot">.</span></span>
+    <span>Made for one.</span>
+    <span>© 2026 Neosmart Labs</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add("is-in");
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.16 });
+  document.querySelectorAll(".reveal, .reveal-self").forEach(function (el) { io.observe(el); });
+})();
+</script>
+
+</body>
+</html>

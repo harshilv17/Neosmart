@@ -1,0 +1,75 @@
+/* ————— journal essay · reading page ————— */
+.essay-page {
+  background: var(--paper);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+.essay-head { padding: 180px 0 60px; }
+@media (max-width: 600px) { .essay-head { padding: 140px 0 44px; } }
+.essay-head .when {
+  font-size: 0.7rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.18em;
+  color: var(--taupe-dark);
+  display: inline-flex; align-items: center; gap: 10px;
+}
+.essay-head .when::before { content: ""; width: 1px; height: 13px; background: var(--oxblood); display: inline-block; }
+.essay-head h1 {
+  margin-top: 22px;
+  font-size: clamp(2rem, 5.4vw, 3.4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.04;
+}
+.essay-head .by { margin-top: 22px; font-size: 0.92rem; color: var(--taupe-dark); }
+.essay-head .by b { font-weight: 600; color: var(--ink); }
+
+/* the measure as a rule under the header */
+.essay-rule {
+  height: 24px;
+  border-bottom: 1px solid var(--ink);
+  background-image:
+    repeating-linear-gradient(90deg, var(--line-paper-2) 0 1px, transparent 1px 12px),
+    repeating-linear-gradient(90deg, var(--ink) 0 1px, transparent 1px 72px);
+  background-size: 100% 10px, 100% 24px;
+  background-repeat: repeat-x;
+  background-position: bottom;
+}
+
+/* essay body */
+.essay { padding: 64px 0 40px; }
+@media (max-width: 600px) { .essay { padding: 48px 0 32px; } }
+.essay p {
+  font-size: 1.125rem;
+  line-height: 1.75;
+  max-width: 62ch;
+}
+.essay p + p { margin-top: 24px; }
+.essay p strong, .essay p b { font-weight: 600; }
+.essay blockquote {
+  margin: 44px 0;
+  padding-left: 24px;
+  border-left: 2px solid var(--oxblood);
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.4;
+  max-width: 30ch;
+}
+.essay blockquote p { font-size: inherit; line-height: inherit; max-width: none; }
+
+/* end mark + footer nav */
+.essay-end { padding: 24px 0 110px; }
+.essay-end .stop { font-size: 2rem; font-weight: 800; color: var(--oxblood); line-height: 1; }
+.essay-end .back {
+  display: inline-flex; align-items: center; gap: 12px;
+  margin-top: 36px;
+  font-size: 0.74rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.16em;
+  text-decoration: none; color: var(--ink);
+}
+.essay-end .back::after {
+  content: ""; width: 26px; height: 1px; background: var(--oxblood);
+  transition: width 0.35s var(--ease);
+}
+.essay-end .back:hover::after, .essay-end .back:focus-visible::after { width: 44px; }

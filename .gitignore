@@ -9,3 +9,6 @@
 next-env.d.ts
 .vercel
 *.tsbuildinfo
+
+# internal reference — original static site + brand docs
+/docs

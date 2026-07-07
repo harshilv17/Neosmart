@@ -12,3 +12,13 @@ next-env.d.ts
 
 # internal reference — original static site + brand docs
 /docs
+
+# OpenNext
+.open-next
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+
+!.env.example

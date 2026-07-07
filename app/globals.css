@@ -1,0 +1,201 @@
+/* ————————————————————————————————————————————————
+   Neosmart — global stylesheet
+   Design tokens + shared primitives, lifted verbatim from the
+   original static pages. The name leads. The accent lives on the
+   full stop of the wordmark and the tagline — nowhere else.
+———————————————————————————————————————————————— */
+:root {
+  --ink: #1A1613;
+  --ink-soft: #262019;
+  --paper: #ECE4D4;
+  --paper-2: #E3D9C4;
+  --oxblood: #7A2E2B;
+  --taupe: #7E7362;        /* large/secondary text on paper, labels on ink */
+  --taupe-dark: #5C5244;   /* small body text on paper — AA contrast */
+  --taupe-lt: #B7AC98;     /* secondary text on ink */
+  --line-ink: rgba(236, 228, 212, 0.14);
+  --line-ink-2: rgba(236, 228, 212, 0.34);
+  --line-paper: rgba(26, 22, 19, 0.16);
+  --line-paper-2: rgba(26, 22, 19, 0.32);
+  --font: var(--font-hanken), "Hanken Grotesk", "Inter", system-ui, -apple-system, sans-serif;
+  --wrap: 1140px;
+  --read: 680px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--ink);
+  color: var(--paper);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+::selection { background: var(--oxblood); color: var(--paper); }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--oxblood); outline-offset: 3px; }
+.ink-ground :focus-visible, .site-bar :focus-visible { outline-color: var(--paper); }
+
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 40px; }
+.read-col { max-width: var(--read); margin: 0 auto; padding: 0 40px; }
+@media (max-width: 900px) { .wrap, .read-col { padding: 0 30px; } }
+@media (max-width: 600px) { .wrap, .read-col { padding: 0 20px; } }
+
+.dot { color: var(--oxblood); }
+
+/* ————— shared type ————— */
+.eyebrow {
+  font-size: 0.7rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.18em;
+  display: inline-flex; align-items: center; gap: 12px;
+}
+.eyebrow .tick {
+  width: 1px; height: 13px; background: var(--oxblood);
+  display: inline-block; flex: none;
+  transform: scaleY(0); transform-origin: bottom;
+  transition: transform 0.7s var(--ease) 0.1s;
+}
+.is-in .eyebrow .tick { transform: scaleY(1); }
+.ink-ground .eyebrow { color: var(--taupe-lt); }
+.paper-ground .eyebrow { color: var(--taupe-dark); }
+
+.section-head {
+  margin-top: 26px;
+  font-size: clamp(1.9rem, 5vw, 3.4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+  max-width: 18ch;
+}
+.body-copy {
+  margin-top: 26px;
+  max-width: 58ch;
+  font-size: 1.0625rem;
+}
+.body-copy + .body-copy { margin-top: 15px; }
+.body-copy em { font-style: normal; font-weight: 600; }
+.ink-ground .muted { color: var(--taupe-lt); }
+.paper-ground .muted { color: var(--taupe-dark); }
+
+/* ————— grounds ————— */
+.ink-ground { background: var(--ink); color: var(--paper); }
+.paper-ground { background: var(--paper); color: var(--ink); }
+.paper-ground.deep { background: var(--paper-2); }
+
+section { padding: 120px 0; }
+@media (max-width: 900px) { section { padding: 96px 0; } }
+@media (max-width: 600px) { section { padding: 76px 0; } }
+
+/* ————— the measure: section rules that do a job ————— */
+.rule {
+  height: 24px;
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 1.3s var(--ease) 0.1s;
+  background-repeat: repeat-x;
+  background-size: 100% 10px, 100% 24px;
+  background-position: bottom;
+}
+.rule.is-in { transform: scaleX(1); }
+.rule.on-ink {
+  border-bottom: 1px solid var(--line-ink-2);
+  background-image:
+    repeating-linear-gradient(90deg, var(--line-ink-2) 0 1px, transparent 1px 12px),
+    repeating-linear-gradient(90deg, var(--paper) 0 1px, transparent 1px 72px);
+}
+.rule.on-paper {
+  border-bottom: 1px solid var(--ink);
+  background-image:
+    repeating-linear-gradient(90deg, var(--line-paper-2) 0 1px, transparent 1px 12px),
+    repeating-linear-gradient(90deg, var(--ink) 0 1px, transparent 1px 72px);
+}
+
+/* ————— reveal primitives ————— */
+.mask { display: block; overflow: hidden; }
+.mask > span {
+  display: block;
+  transform: translateY(112%);
+  transition: transform 1.05s var(--ease) var(--d, 0s);
+}
+.is-in .mask > span { transform: translateY(0); }
+.fade {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.9s var(--ease) var(--d, 0s), transform 0.9s var(--ease) var(--d, 0s);
+}
+.is-in .fade, .fade.is-in { opacity: 1; transform: none; }
+
+/* ————— the one CTA ————— */
+.cta {
+  position: relative;
+  display: inline-block;
+  margin-top: 44px;
+  padding: 16px 34px;
+  background: var(--oxblood);
+  color: var(--paper);
+  font-weight: 600;
+  font-size: 0.98rem;
+  text-decoration: none;
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: color 0.35s var(--ease);
+}
+.cta::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: var(--paper);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.45s var(--ease);
+}
+.cta:hover::before, .cta:focus-visible::before { transform: scaleX(1); }
+.cta:hover, .cta:focus-visible { color: var(--ink); }
+.cta:disabled { opacity: 0.6; cursor: default; }
+.cta span { position: relative; z-index: 1; }
+
+.invite-head {
+  margin-top: 26px;
+  font-size: clamp(2.2rem, 7vw, 5rem);
+  font-weight: 800;
+  letter-spacing: -0.033em;
+  line-height: 0.98;
+  max-width: 14ch;
+}
+.invite-note { margin-top: 20px; font-size: 0.85rem; color: var(--taupe-lt); }
+
+/* ————— page masthead (inner pages) ————— */
+.masthead { padding: 190px 0 120px; }
+@media (max-width: 600px) { .masthead { padding: 150px 0 84px; } }
+.mast-head {
+  margin-top: 26px;
+  font-size: clamp(2.2rem, 6.5vw, 4.6rem);
+  font-weight: 800;
+  letter-spacing: -0.033em;
+  line-height: 1.0;
+  max-width: 15ch;
+}
+.mast-sub {
+  margin-top: 28px;
+  max-width: 52ch;
+  font-size: 1.0625rem;
+  color: var(--taupe-lt);
+}
+
+/* ————— reduced motion ————— */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .mask > span, .fade, .eyebrow .tick, .rule,
+  .hero-wordmark .stop, .hero-measure .band,
+  .truth::before, .craft::before, .rq::before,
+  .stage .pos i, .check::before, .own-item::before {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  .hero-measure .sweep, .scroll-cue .stem::after { animation: none !important; display: none; }
+  .hero-inner { transform: none !important; opacity: 1 !important; }
+  .site-bar { transition: none; }
+}
